@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Your TalentBay Profile</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      max-width: 140px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      color: #333;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .profile-card p {
+      font-size: 1.05em;
+      color: #444;
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-brand {
+      background-color: #0072ff;
+      color: #fff;
+    }
+
+    .btn-brand:hover {
+      background-color: #005ecb;
+      transform: translateY(-2px);
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800;
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+      transform: translateY(-2px);
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+      transform: translateY(-2px);
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      display: block;
+      text-align: center;
+      background-color: #f0f0f0;
+      color: #0072ff;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #e0e0e0;
+      transform: translateY(-2px);
+    }
+
+    .no-resume {
+      color: #dc3545;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 25px; }
+      h2 { font-size: 1.5em; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  
+
+  <h2>Welcome to Your TalentBay Profile</h2>
+
+  <div th:if="${profile == null}" class="profile-card">
+    <p>You're one step away from showcasing your skills and aspirations.</p>
+    <a href="/profile/create" class="btn btn-brand">Create Your Profile</a>
+  </div>
+
+  <div th:if="${profile != null}" class="profile-card">
+    <p><strong>Name:</strong> <span th:text="${profile.name}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${profile.email}"></span></p>
+    <p><strong>Job Position:</strong> <span th:text="${profile.jobPosition}"></span></p>
+
+    <div style="margin-top: 20px;">
+      <a href="/profile/edit" class="btn btn-warning">Edit Profile</a>
+      <a href="/profile/delete" class="btn btn-danger"
+         onclick="return confirm('Are you sure you want to delete your profile?')">Delete Profile</a>
+      <a th:if="${profile.resumePath != null}" href="/profile/download" class="btn btn-success">Download Resume</a>
+      <span th:if="${profile.resumePath == null}" class="no-resume">No resume uploaded yet.</span>
+    </div>
+  </div>
+
+  <a href="/jobseeker/homepage" class="back-btn">← Back to Dashboard</a>
+</div>
+</body>
+</html>

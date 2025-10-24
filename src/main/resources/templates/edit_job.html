@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Job Post | TalentBay</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .job-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 18px;
+      padding: 40px 50px;
+      width: 400px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+      color: #fff;
+      text-align: center;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    @keyframes slideUp { to { transform: translateY(0); } }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 1.8em;
+      font-weight: bold;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      text-align: left;
+      font-weight: 600;
+      color: #f0f0f0;
+      font-size: 0.95em;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0 10px #00c6ff;
+      transform: scale(1.02);
+      outline: none;
+    }
+
+    button {
+      padding: 14px;
+      background: linear-gradient(90deg, #00C6FF, #0072FF);
+      border: none;
+      font-size: 1em;
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      background: linear-gradient(90deg, #0072FF, #00C6FF);
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      border-radius: 8px;
+      margin-top: 10px;
+      padding: 12px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.5);
+      color: #0072ff;
+    }
+
+    @media (max-width: 480px) {
+      .job-card { width: 88%; padding: 30px 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="job-card">
+  <h2>Edit Job Post</h2>
+
+  <form th:action="@{'/recruiter/jobs/update/' + ${job.id}}" method="post">
+    <label>Job Title</label>
+    <input type="text" name="title" th:value="${job.title}" required>
+
+    <label>Company</label>
+    <input type="text" name="company" th:value="${job.company}" required>
+
+    <label>Location</label>
+    <input type="text" name="location" th:value="${job.location}" required>
+
+    <label>Description</label>
+    <textarea name="description" rows="5" th:text="${job.description}" required></textarea>
+
+    <button type="submit">Update Job</button>
+  </form>
+
+  <a href="/recruiter/jobs" class="btn-back">← Back to Job List</a>
+</div>
+
+</body>
+</html>

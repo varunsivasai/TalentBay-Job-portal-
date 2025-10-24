@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Seeker Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .dashboard {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+      animation: slideUp 0.8s ease-out forwards;
+      transform: translateY(20px);
+    }
+
+    @keyframes slideUp {
+      to { transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.4em;
+      color: #2c3e50;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .card i {
+      font-size: 2.5em;
+      color: #1c92d2;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      display: block;
+      font-size: 1em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .card.logout i {
+      color: #d9534f;
+    }
+
+    a.card {
+      text-decoration: none;
+    }
+
+    @media (max-width: 480px) {
+      .dashboard {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .card i {
+        font-size: 2em;
+      }
+
+      .card span {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="dashboard">
+  <h1>Welcome, Job Seeker!</h1>
+
+  <div class="grid">
+    <!-- Profile Management -->
+    <a th:href="@{/profile/create}" class="card">
+      <i class="fa-solid fa-user-plus"></i>
+      <span>Create Profile</span>
+    </a>
+    <a th:href="@{/profile/edit}" class="card">
+      <i class="fa-solid fa-user-pen"></i>
+      <span>Edit Profile</span>
+    </a>
+    <a th:href="@{/profile}" class="card">
+      <i class="fa-solid fa-id-card"></i>
+      <span>View Profile</span>
+    </a>
+    <a th:href="@{/profile/download}" class="card">
+      <i class="fa-solid fa-download"></i>
+      <span>Download Resume</span>
+    </a>
+
+    <!-- Job Search & Applications -->
+    <a th:href="@{/jobs/landing}" class="card">
+      <i class="fa-solid fa-briefcase"></i>
+      <span>Search & Apply Jobs</span>
+    </a>
+    <a th:href="@{/applications/my-applications}" class="card">
+      <i class="fa-solid fa-paper-plane"></i>
+      <span>My Applications</span>
+    </a>
+
+    <!-- Logout -->
+    <a th:href="@{/logout}" class="card logout">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>Logout</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>

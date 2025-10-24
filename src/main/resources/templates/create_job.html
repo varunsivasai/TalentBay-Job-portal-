@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TalentBay | Create Job Post</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #0072ff, #00c6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 18px;
+            padding: 40px 50px;
+            width: 400px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp { to { transform: translateY(0); } }
+
+        .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #00C6FF, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            text-align: left;
+            font-weight: 600;
+            color: #f0f0f0;
+            font-size: 0.95em;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            box-shadow: 0 0 10px #00c6ff;
+            transform: scale(1.02);
+            outline: none;
+        }
+
+        button {
+            padding: 14px;
+            background: linear-gradient(90deg, #00C6FF, #0072FF);
+            border: none;
+            font-size: 1em;
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(90deg, #0072FF, #00C6FF);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #00c6ff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .job-card { width: 88%; padding: 30px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="job-card">
+    <div class="logo">TalentBay</div>
+    <h1>Create Job Post</h1>
+
+    <form th:action="@{/recruiter/jobs/save}" method="post">
+        <label>Job Title</label>
+        <input type="text" name="title" required />
+
+        <label>Company</label>
+        <input type="text" name="company" required />
+
+        <label>Location</label>
+        <input type="text" name="location" required />
+
+        <label>Description</label>
+        <textarea name="description" rows="5" required></textarea>
+
+        <button type="submit">Save Job</button>
+    </form>
+
+    <div class="back-link">
+        <a href="/recruiter/jobs">← Back to Job List</a>
+    </div>
+</div>
+
+</body>
+</html>

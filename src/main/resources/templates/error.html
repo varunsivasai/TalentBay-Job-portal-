@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Error</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1c92d2, #f2fcfe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #d9534f;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        .status {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #1c92d2;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #136192;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Oops! Something went wrong.</h1>
+    <p class="status">
+        Status: <span th:text="${status != null ? status : 'Unknown'}"></span>
+    </p>
+    <p th:if="${message}">Details: <span th:text="${message}"></span></p>
+    <p th:if="${message == null}">Please try again or go back to the home page.</p>
+    <a href="/">Go to Home Page</a>
+</div>
+</body>
+</html>

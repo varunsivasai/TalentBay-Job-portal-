@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>TalentBay - Smart Career Connection</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to right, #001f3f, #0074D9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating gradient overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(0,198,255,0.3), rgba(0,0,0,0.8));
+      animation: gradientMove 10s infinite alternate ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes gradientMove {
+      from { transform: translate(0, 0) rotate(0deg); }
+      to { transform: translate(20px, 20px) rotate(5deg); }
+    }
+
+    h1, p, .cards, .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00C6FF, #0072FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1s ease-out;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 650px;
+      margin-bottom: 50px;
+      animation: fadeIn 1.5s ease-out;
+      opacity: 0.9;
+    }
+
+    .cards {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 35px 45px;
+      min-width: 240px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0px 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .card h2 {
+      font-size: 1.7em;
+      margin-bottom: 25px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin: 10px 0;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #00C6FF, #0072FF);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .card a:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9em;
+      opacity: 0.8;
+      color: #e0e0e0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.4em;
+      }
+      p {
+        font-size: 1em;
+        padding: 0 20px;
+      }
+      .cards {
+        flex-direction: column;
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>Welcome to <span style="color:#00C6FF;">TalentBay</span></h1>
+<p>Empowering job seekers and recruiters to connect smarter, faster, and more efficiently.
+  Join the TalentBay network and unlock limitless opportunities.</p>
+
+<div class="cards">
+  <div class="card">
+    <h2>For Job Seekers</h2>
+    <a href="/register/jobseeker">Create Account</a>
+    <a href="/login/jobseeker">Login</a>
+  </div>
+  <div class="card">
+    <h2>For Recruiters</h2>
+    <a href="/register/recruiter">Register Company</a>
+    <a href="/login/recruiter">Login</a>
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 TalentBay | Connecting Talent with Opportunity
+</div>
+</body>
+</html>
